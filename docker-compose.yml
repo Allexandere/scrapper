@@ -1,0 +1,53 @@
+version: '3'
+
+networks:
+  web:
+    external: true
+    driver:  bridge
+
+services:
+
+  db:
+    image: "postgres:alpine"
+    container_name: db
+    volumes:
+      - scrapper-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - web
+    environment:
+      POSTGRES_DB: scrapper
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+
+  back:
+    build: .
+    image: back
+    container_name: back
+    environment:
+      DB_SERVER: db
+      POSTGRES_DB: scrapper
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      CHROMEDRIVER_LINK: http://chrome:4444/wd/hub
+    networks:
+      - web
+    ports:
+      - "8081:8081"
+    links:
+      - db
+    depends_on:
+      - db
+      - chrome
+
+  chrome:
+    image: selenium/standalone-chrome:latest
+    hostname: chrome
+    networks:
+      - web
+    privileged: true
+    shm_size: 2g
+
+volumes:
+  scrapper-data:
