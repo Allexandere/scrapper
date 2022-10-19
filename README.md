@@ -1,6 +1,6 @@
 # Oil scrapper
 [![Docker Image CI](https://github.com/Allexandere/scrapper/actions/workflows/docker-image.yml/badge.svg)](https://github.com/Allexandere/scrapper/actions/workflows/docker-image.yml)
-[![Java CI with Maven](https://github.com/Allexandere/scrapper/actions/workflows/maven.yml/badge.svg)](https://github.com/Allexandere/scrapper/actions/workflows/maven.yml) 
+[![Maven build](https://github.com/Allexandere/scrapper/actions/workflows/build.yml/badge.svg)](https://github.com/Allexandere/scrapper/actions/workflows/build.yml)
 
 This project scraps data about *urals* oil mark and publisher api to read it.
 
