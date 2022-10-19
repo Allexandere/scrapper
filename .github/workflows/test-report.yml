@@ -1,18 +1,10 @@
 name: test-report
 on:
   push:
-    branches:
-      - master
-    tags:
-      - '!*' # Do not execute on tags
-    paths:
-      - src/*
-      - test/*
-      - '*.json'
-      - yarn.lock
+      branches: [ "master" ]
   pull_request:
-    paths:
-      - '!*.MD'
+      branches: [ "master" ]
+
 jobs:
   test:
     strategy:
